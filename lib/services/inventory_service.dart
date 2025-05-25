@@ -9,8 +9,7 @@ class InventoryService {
     final prefs = await SharedPreferences.getInstance();
     final items = await getItems();
     items.add(item);
-    final encoded = jsonEncode(items.map((i) => i.toJson()).toList());
-    await prefs.setString(_key, encoded);
+    await saveItems(items);
   }
 
   static Future<List<FoodItem>> getItems() async {
@@ -21,6 +20,12 @@ class InventoryService {
     return List<FoodItem>.from(
       decoded.map((item) => FoodItem.fromJson(item)),
     );
+  }
+
+  static Future<void> saveItems(List<FoodItem> items) async {
+    final prefs = await SharedPreferences.getInstance();
+    final encoded = jsonEncode(items.map((i) => i.toJson()).toList());
+    await prefs.setString(_key, encoded);
   }
 
   static Future<void> clearItems() async {

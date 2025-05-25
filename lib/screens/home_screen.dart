@@ -4,7 +4,7 @@ import 'pantry_screen.dart';
 import 'meal_plan_screen.dart';
 
 class HomeScreen extends StatelessWidget {
-  final String fitnessGoal = 'gain muscle'; // You can make this dynamic later
+  final String fitnessGoal = 'gain muscle'; // default fallback
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +19,17 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              ElevatedButton.icon(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/profile/summary');
+                },
+                icon: Icon(Icons.person),
+                label: Text('View Profile'),
+                style: ElevatedButton.styleFrom(
+                  minimumSize: Size(double.infinity, 50),
+                ),
+              ),
+              SizedBox(height: 20),
               ElevatedButton.icon(
                 onPressed: () {
                   Navigator.push(
@@ -51,9 +62,7 @@ class HomeScreen extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                      builder: (_) => MealPlanScreen(goal: fitnessGoal),
-                    ),
+                    MaterialPageRoute(builder: (_) => MealPlanScreen(goal: fitnessGoal)),
                   );
                 },
                 icon: Icon(Icons.fastfood),

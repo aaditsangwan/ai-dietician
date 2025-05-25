@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../services/inventory_service.dart';
 import '../models/food_item.dart';
+import '../widgets/food_item_card.dart';
 
 class PantryScreen extends StatefulWidget {
   @override
@@ -23,6 +24,13 @@ class _PantryScreenState extends State<PantryScreen> {
     });
   }
 
+  Future<void> deleteItem(int index) async {
+    setState(() {
+      items.removeAt(index);
+    });
+    await InventoryService.saveItems(items);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,10 +41,9 @@ class _PantryScreenState extends State<PantryScreen> {
               itemCount: items.length,
               itemBuilder: (_, index) {
                 final item = items[index];
-                return ListTile(
-                  title: Text(item.name),
-                  subtitle: Text('Calories: ${item.calories} kcal'),
-                  trailing: Text('Protein: ${item.protein}g'),
+                return FoodItemCard(
+                  item: item,
+                  onDelete: () => deleteItem(index),
                 );
               },
             ),

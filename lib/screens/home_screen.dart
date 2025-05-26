@@ -4,7 +4,7 @@ import 'pantry_screen.dart';
 import 'meal_plan_screen.dart';
 
 class HomeScreen extends StatelessWidget {
-  final String fitnessGoal = 'gain muscle'; // default fallback
+  final String fitnessGoal = 'gain muscle'; // fallback
 
   @override
   Widget build(BuildContext context) {
@@ -67,6 +67,17 @@ class HomeScreen extends StatelessWidget {
                 },
                 icon: Icon(Icons.fastfood),
                 label: Text('Generate Meal Plan'),
+                style: ElevatedButton.styleFrom(
+                  minimumSize: Size(double.infinity, 50),
+                ),
+              ),
+              SizedBox(height: 20),
+              ElevatedButton.icon(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/tracker');
+                },
+                icon: Icon(Icons.calendar_today),
+                label: Text('Daily Meal Tracker'),
                 style: ElevatedButton.styleFrom(
                   minimumSize: Size(double.infinity, 50),
                 ),

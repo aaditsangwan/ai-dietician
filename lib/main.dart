@@ -3,7 +3,8 @@ import 'screens/home_screen.dart';
 import 'screens/profile_screen.dart';
 import 'screens/profile_activity_screen.dart';
 import 'screens/profile_macro_screen.dart';
-import 'screens/profile_summary_screen.dart'; // NEW
+import 'screens/profile_summary_screen.dart';
+import 'screens/meal_tracker_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -31,7 +32,8 @@ class MyApp extends StatelessWidget {
           final args = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
           return ProfileMacroScreen(data: args);
         },
-        '/profile/summary': (_) => ProfileSummaryScreen(), // NEW
+        '/profile/summary': (_) => ProfileSummaryScreen(),
+        '/tracker': (_) => MealTrackerScreen(),
       },
     );
   }
